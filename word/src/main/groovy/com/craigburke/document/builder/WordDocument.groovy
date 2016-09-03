@@ -142,9 +142,11 @@ class WordDocument {
     private addImageFiles() {
         documentParts.each { String name, DocumentPart part ->
             part.images.each { image ->
+				try { 
                 zipStream.putNextEntry(new ZipEntry("${CONTENT_FOLDER}/${IMAGE_FOLDER}/${image.name}"))
                 zipStream << image.data
                 zipStream.closeEntry()
+				} catch (Exception ex)  {}
             }
         }
 
