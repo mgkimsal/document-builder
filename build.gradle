@@ -11,7 +11,7 @@ plugins {
 }
 
 project.ext {
-    githubUrl = 'https://github.com/craigburke/document-builder'
+//    githubUrl = 'https://github.com/craigburke/document-builder'
 }
 
 allprojects {
@@ -71,13 +71,13 @@ subprojects {
                 repo = 'document-builder'
                 userOrg = 'craigburke'
                 name = project.artifactId
-                githubRepo = project.githubUrl
-                githubReleaseNotesFile = 'README.adoc'
+//                githubRepo = project.githubUrl
+//                githubReleaseNotesFile = 'README.adoc'
                 version {
-                    mavenCentralSync {
-                        user = project.hasProperty('mavenCentralUsername') ? project.mavenCentralUsername : ''
-                        password = project.hasProperty('mavenCentralPassword') ? project.mavenCentralPassword : ''
-                    }
+ //                   mavenCentralSync {
+  //                      user = project.hasProperty('mavenCentralUsername') ? project.mavenCentralUsername : ''
+   //                     password = project.hasProperty('mavenCentralPassword') ? project.mavenCentralPassword : ''
+     //               }
                 }
             }
         }
@@ -144,19 +144,6 @@ asciidoctor {
             'toc': 'left',
             version: project.version,
             'projectUrl': 'https://github.com/craigburke/document-builder'
-}
-
-githubPages {
-    repoUri = "${project.githubUrl}.git"
-
-    credentials {
-        username = project.hasProperty('githubToken') ? project.githubToken : ''
-        password = ''
-    }
-
-    pages {
-        from file(asciidoctor.outputDir.path + '/html5')
-    }
 }
 
 publishGhPages.dependsOn asciidoctor
